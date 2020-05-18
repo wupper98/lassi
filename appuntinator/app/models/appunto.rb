@@ -1,0 +1,2 @@
+class Appunto < ApplicationRecord
+end
