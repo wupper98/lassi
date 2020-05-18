@@ -24,4 +24,12 @@ ActiveRecord::Schema.define(version: 20200517104033) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "appuntos", force: :cascade do |t|
+    t.text "contenuto"
+    t.string "rating"
+    t.datetime "release_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end

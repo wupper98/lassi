@@ -1,0 +1,13 @@
+%h2 Modifica il tuo appunto
+
+#{link_to 'Home', appunti_index_path} | #{link_to 'Back', appunti_path(@appunto)}
+
+= form_tag appunti_path, :method => :put do
+
+	= label :appunto, :contenuto, 'Testo'
+	= text_field :appunto, :contenuto, value: @appunto.contenuto
+	
+	= label :appunto, :release_date, 'Data di Pubblicazione'
+	= date_select :appunto, :release_date
+	
+	= submit_tag 'Salva'
