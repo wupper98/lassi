@@ -5,6 +5,7 @@ class AppuntiController < ApplicationController
 	# GET 
 	def index
 		@appunti = Appunto.all
+		@user = current_user
 	end
 	
 	def new
