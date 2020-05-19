@@ -3,6 +3,11 @@
 
 %h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
+- if user_signed_in?
+    = link_to("Log out", destroy_user_session_path(@user), method: :delete)
+- else 
+    = link_to("Log in", new_user_session_path)
+
 %table#appunti
     %thead
         %tr

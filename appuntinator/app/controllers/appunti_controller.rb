@@ -1,10 +1,11 @@
 class AppuntiController < ApplicationController
 
-skip_before_action :verify_authenticity_token # per permette le post
+	skip_before_action :authenticate_user!, only: [:show, :index]
 
 	# GET 
 	def index
 		@appunti = Appunto.all
+		@user = current_user
 	end
 	
 	def new
