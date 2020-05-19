@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200519141907) do
+ActiveRecord::Schema.define(version: 20200519182002) do
 
   create_table "appuntos", force: :cascade do |t|
     t.text "contenuto"
@@ -18,6 +18,24 @@ ActiveRecord::Schema.define(version: 20200519141907) do
     t.datetime "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "commentos", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.integer "users_id"
+    t.integer "appuntos_id"
+    t.index ["appuntos_id"], name: "index_commentos_on_appuntos_id"
+    t.index ["users_id"], name: "index_commentos_on_users_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "rating"
+    t.text "body"
+    t.integer "user_id"
+    t.integer "appunto_id"
+    t.index ["appunto_id"], name: "index_comments_on_appunto_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

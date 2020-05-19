@@ -11,3 +11,17 @@
 
 #{link_to("Modifica", edit_appunti_path(@appunto))}
 #{link_to("Rimuovi", appunti_path(@appunto), method: :delete, data: { confirm: 'Vuoi davvero cancellare il tuo appunto?'})}
+ 
+-if user_signed_in?
+	= link_to("Aggiungi un commento", new_appunti_comment_path(@appunto))
+
+%table#appunti{:width=>"100%", :border=>"1"}
+	%thead
+		%tr
+			%th Commento
+			%th Voto
+	%tbody
+	- @comments.each do |c|
+		%tr
+			%td= c.body
+			%td= c.rating
