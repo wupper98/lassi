@@ -20,15 +20,6 @@ ActiveRecord::Schema.define(version: 20200519182002) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "commentos", force: :cascade do |t|
-    t.integer "rating"
-    t.text "comment"
-    t.integer "users_id"
-    t.integer "appuntos_id"
-    t.index ["appuntos_id"], name: "index_commentos_on_appuntos_id"
-    t.index ["users_id"], name: "index_commentos_on_users_id"
-  end
-
   create_table "comments", force: :cascade do |t|
     t.integer "rating"
     t.text "body"
