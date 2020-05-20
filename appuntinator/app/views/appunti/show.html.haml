@@ -2,7 +2,7 @@
 
 #{link_to 'Home', appunti_index_path}
 
-%table#appunti{:width=>"100%", :border=>"1"}
+%table#appunti
 	%thead
 		%tr
 			%th Testo
@@ -15,7 +15,7 @@
 -if user_signed_in?
 	= link_to("Aggiungi un commento", new_appunti_comment_path(@appunto))
 
-%table#appunti{:width=>"100%", :border=>"1"}
+%table#appunti
 	%thead
 		%tr
 			%th Commento
