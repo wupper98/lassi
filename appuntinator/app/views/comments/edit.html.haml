@@ -1,0 +1,13 @@
+%h2 Modifica il tuo commento
+
+#{link_to 'Home', appunti_index_path} | #{link_to 'Back', appunti_path(@appunto)}
+
+= form_tag appunti_comment_path, :method => :put do
+
+	= label :comment, :body, 'Testo'
+	= text_field :comment, :body, value: @commento.body
+	
+	= label :comment, :rating, 'Voto'
+	= select :comment, :rating, [1,2,3,4,5]
+	
+	= submit_tag 'Salva'
