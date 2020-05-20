@@ -24,6 +24,7 @@ class AppuntiController < ApplicationController
 		id = params[:id]
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
+			@comments = @appunto.comments
 		else
 			redirect_to appunti_index_path
 		end

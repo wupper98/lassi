@@ -1,0 +1,13 @@
+%h2 Aggiungi un commento
+
+#{link_to 'Home', appunti_index_path}
+
+= form_tag appunti_comments_path, :method => :post do
+
+	= label :comment, :body, 'Testo'
+	= text_field :comment, :body
+	
+	= label :comment, :rating, 'Voto'
+	= select :comment, :rating, [1,2,3,4,5]
+	
+	= submit_tag 'Aggiungi'
