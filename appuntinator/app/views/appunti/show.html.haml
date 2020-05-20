@@ -6,8 +6,10 @@
 	%thead
 		%tr
 			%th Testo
+			%th Rating
 	%tbody
 		%td= @appunto.contenuto
+		%td= @appunto.rating
 
 #{link_to("Modifica", edit_appunti_path(@appunto))}
 #{link_to("Rimuovi", appunti_path(@appunto), method: :delete, data: { confirm: 'Vuoi davvero cancellare il tuo appunto?'})}

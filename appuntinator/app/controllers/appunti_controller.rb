@@ -25,6 +25,18 @@ class AppuntiController < ApplicationController
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
 			@comments = @appunto.comments
+
+			rating = 0
+			counter = 0
+			@comments.each do |c|
+				rating += c.rating
+				counter += 1
+			end
+
+			rating_medio = rating.to_f / counter.to_f
+
+			@appunto.update_attribute :rating, (rating_medio).to_s
+
 		else
 			redirect_to appunti_index_path
 		end
@@ -32,7 +44,7 @@ class AppuntiController < ApplicationController
 	
 	# POST
 	def create
-		Appunto.create(params[:appunto].permit(:contenuto, :release_date))
+		Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating))
 		redirect_to action: 'index'
 	end
 	
