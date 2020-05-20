@@ -25,3 +25,5 @@
 		%tr
 			%td= c.body
 			%td= c.rating
+			%td= link_to "edit", edit_appunti_comment_path(@appunto,c)
+			%td= link_to "del", appunti_comment_path(@appunto, c), method: :delete
