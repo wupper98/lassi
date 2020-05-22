@@ -33,3 +33,9 @@ a {
   font-weight: bold;
   width: initial;
 }
+
+#notice {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
+}
