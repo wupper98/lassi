@@ -63,5 +63,7 @@ end
 # Gems for authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'rspec'
+gem 'canard', '~> 0.5.0.pre'
 
 gem 'haml'
