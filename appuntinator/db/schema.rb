@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200519182002) do
+ActiveRecord::Schema.define(version: 20200522131919) do
 
   create_table "appuntos", force: :cascade do |t|
     t.text "contenuto"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20200519182002) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comm_counter"
     t.index ["user_id"], name: "index_appuntos_on_user_id"
   end
 

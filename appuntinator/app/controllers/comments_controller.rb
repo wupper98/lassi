@@ -11,6 +11,9 @@ class CommentsController < ApplicationController
             @comment.user_id = user
             @comment.appunto_id = id
             @comment.save!
+
+            @appunto.update_attribute :comm_counter, @appunto.comm_counter+1
+
             redirect_to appunti_path(@appunto)
         end
     end

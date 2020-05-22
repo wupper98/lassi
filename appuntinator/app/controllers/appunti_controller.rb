@@ -9,6 +9,7 @@ class AppuntiController < ApplicationController
 	end
 	
 	def new
+		@user = current_user.id
 	end
 	
 	def edit
@@ -26,6 +27,8 @@ class AppuntiController < ApplicationController
 			@appunto = Appunto.find(id)
 			@comments = @appunto.comments
 
+			@user = User.find(@appunto.user_id).email
+
 			rating = 0
 			counter = 0
 			@comments.each do |c|
@@ -33,10 +36,10 @@ class AppuntiController < ApplicationController
 				counter += 1
 			end
 
-			rating_medio = rating.to_f / counter.to_f
-
-			@appunto.update_attribute :rating, (rating_medio).to_s
-
+			if counter > 0
+				rating_medio = rating.to_f / counter.to_f
+				@appunto.update_attribute :rating, (rating_medio).to_s
+			end
 		else
 			redirect_to appunti_index_path
 		end
@@ -44,7 +47,7 @@ class AppuntiController < ApplicationController
 	
 	# POST
 	def create
-		Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating))
+		Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating, :user_id, :comm_counter))
 		redirect_to action: 'index'
 	end
 	
