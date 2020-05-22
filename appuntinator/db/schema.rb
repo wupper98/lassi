@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200522121913) do
+ActiveRecord::Schema.define(version: 20200519182002) do
 
   create_table "appuntos", force: :cascade do |t|
     t.text "contenuto"
     t.string "rating"
     t.datetime "release_date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_appuntos_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -39,7 +41,6 @@ ActiveRecord::Schema.define(version: 20200522121913) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.integer "roles_mask"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

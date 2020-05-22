@@ -4,7 +4,7 @@ class CreateAppuntos < ActiveRecord::Migration[5.1]
       t.text :contenuto
       t.string :rating
       t.datetime :release_date
-
+      t.references 'user'
       t.timestamps
     end
   end
