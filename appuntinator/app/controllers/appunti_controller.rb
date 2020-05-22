@@ -2,7 +2,12 @@ class AppuntiController < ApplicationController
 
 	skip_before_action :authenticate_user!, only: [:show, :index]
 
-	# GET 
+	# GET
+	def index_d
+		@appunti = Appunto.all.order('appuntos.rating DESC')
+		@user = current_user
+	end
+
 	def index
 		@appunti = Appunto.all
 		@user = current_user

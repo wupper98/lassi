@@ -24,4 +24,4 @@
             %td= app.release_date.strftime("%d/%m/%Y")
             %td= link_to "Leggi di più", appunti_path(app)
 
-#{link_to 'Aggiungi un appunto', new_appunti_path}
+%a{href: new_appunti_path} Aggiungi un appunto
