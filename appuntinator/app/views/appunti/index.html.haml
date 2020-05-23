@@ -3,6 +3,9 @@
 
 %h1 Benvenuto su Appuntinator
 
+- if user_signed_in?
+    User: #{@user.email}
+
 
 %h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
@@ -35,3 +38,8 @@
     %p
         Per usare funzioni più avanzate devi eseguire il
         = link_to "login.", new_user_session_path
+    
+- if user_signed_in?
+    %p Contatta gli sviluppatori di Appuntinator: 
+    = mail_to( "gianlucadecarlo98@gmail.com")
+    = mail_to( "aandreani@gmail.com")
