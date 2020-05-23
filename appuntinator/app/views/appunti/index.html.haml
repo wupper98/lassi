@@ -1,25 +1,37 @@
+- flash.each do |type,msg|
+    %p#notice= msg
+
 %h1 Benvenuto su Appuntinator
 
 
 %h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
 - if user_signed_in?
-    = link_to("Log out", destroy_user_session_path(@user), method: :delete)
-- else 
-    = link_to("Log in", new_user_session_path)
+    %p
+        = link_to("Modifica il tuo profilo", edit_user_registration_path(@user))
 
 %table#appunti
     %thead
         %tr
             %th Contenuto
             %th rating
+            %th # commenti
             %th Data di Pubblicazione
     %tbody
     - @appunti.each do |app|
         %tr
             %td= app.contenuto
             %td= app.rating
+            %td= app.comm_counter
             %td= app.release_date.strftime("%d/%m/%Y")
             %td= link_to "Leggi di più", appunti_path(app)
 
-#{link_to 'Aggiungi un appunto', new_appunti_path}
+- if user_signed_in?
+    %p
+        = link_to("Crea un appunto", new_appunti_path)
+        |
+        = link_to("Log out", destroy_user_session_path(@user), method: :delete)
+- else 
+    %p
+        Per usare funzioni più avanzate devi eseguire il
+        = link_to "login.", new_user_session_path

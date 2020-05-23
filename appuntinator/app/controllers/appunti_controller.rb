@@ -2,21 +2,32 @@ class AppuntiController < ApplicationController
 
 	skip_before_action :authenticate_user!, only: [:show, :index]
 
-	# GET 
+	# GET
+	def index_d
+		@appunti = Appunto.all.order('appuntos.rating DESC')
+		@user = current_user
+	end
+
 	def index
 		@appunti = Appunto.all
 		@user = current_user
 	end
 	
 	def new
+		@user = current_user.id
 	end
 	
 	def edit
 		id = params[:id]
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
+			if @appunto.user_id != current_user.id
+				flash[:notice] = "Non è il tuo appunto"
+				redirect_to appunti_path(@appunto)
+			end
 		else
-			redirect_to appunti_index_path
+			flash[:notice] = "Appunto non trovato"
+			redirect_to appunti_index_path		
 		end
 	end
 	
@@ -26,6 +37,10 @@ class AppuntiController < ApplicationController
 			@appunto = Appunto.find(id)
 			@comments = @appunto.comments
 
+			@user = User.find(@appunto.user_id).email
+			
+			@currentUser = current_user
+
 			rating = 0
 			counter = 0
 			@comments.each do |c|
@@ -33,10 +48,10 @@ class AppuntiController < ApplicationController
 				counter += 1
 			end
 
-			rating_medio = rating.to_f / counter.to_f
-
-			@appunto.update_attribute :rating, (rating_medio).to_s
-
+			if counter > 0
+				rating_medio = rating.to_f / counter.to_f
+				@appunto.update_attribute :rating, (rating_medio).to_s
+			end
 		else
 			redirect_to appunti_index_path
 		end
@@ -44,18 +59,24 @@ class AppuntiController < ApplicationController
 	
 	# POST
 	def create
-		Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating))
+		Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating, :user_id, :comm_counter))
 		redirect_to action: 'index'
 	end
 	
 	# PATCH
 	def update
 		id = params[:id]
+		user = current_user.id
+
 		if Appunto.exists?(id: id)
-            @appunto = Appunto.find(id)
-			@appunto.update_attributes!(params[:appunto].permit(:contenuto, :release_date))
-			redirect_to appunti_path(@appunto)
+			@appunto = Appunto.find(id)
+			if @appunto.user_id == user
+				@appunto.update_attributes!(params[:appunto].permit(:contenuto, :release_date))
+				flash[:notice] = "Appunto correttamente modificato"
+				redirect_to appunti_path(@appunto)
+			end
 		else
+			flash[:notice] = "Non è il tuo appunto"
 			redirect_to appunti_index_path
 		end
 	end
@@ -63,12 +84,19 @@ class AppuntiController < ApplicationController
 	# DELETE
 	def destroy
 		id = params[:id]
+		user = current_user.id
+
 		if Appunto.exists?(id: id)
-			@appunto = Appunto.find(id)
-			@appunto.destroy
-			redirect_to appunti_index_path
-		else
-			redirect_to appunti_index_path
+			appunto = Appunto.find(id)
+
+			if appunto.user_id == user
+				appunto.destroy
+				flash[:notice] = "Appunto correttamente rimosso"
+			else
+				flash[:notice] = "Non è il tuo appunto"
+			end
 		end
+
+		redirect_to appunti_index_path
 	end
 end

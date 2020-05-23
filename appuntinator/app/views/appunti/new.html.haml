@@ -1,3 +1,6 @@
+- flash.each do |type,msg|
+	%p#notice= msg
+
 %h2 Condividi un nuovo appunto
 
 #{link_to 'Home', appunti_index_path}
@@ -5,10 +8,14 @@
 = form_tag appunti_index_path, :method => :post do
 
 	= label :appunto, :contenuto, 'Testo'
-	= text_field :appunto, :contenuto
+	= text_area :appunto, :contenuto
 	
 	= hidden_field(:appunto, :release_date, :value => Time.now.strftime("%d/%m/%Y") )
 
 	= hidden_field(:appunto, :rating, :value => "0")
+
+	= hidden_field(:appunto, :user_id, :value => @user)
+
+	= hidden_field(:appunto, :comm_counter, :value => "0")
 	
 	= submit_tag 'Salva'
