@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:notice] = "Non sei autorizzato a compiere questa azione!"
+    flash[:notice] = exception.message
     redirect_to root_path
   end
 end

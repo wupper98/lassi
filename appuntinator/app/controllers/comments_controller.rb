@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
         if Appunto.exists?(id)
             @appunto = Appunto.find(id)
             @comment = Comment.new(params[:comment].permit(:rating, :body))
+            authorize! :create, @comment, :message => "Non puoi creare commenti!"
             @comment.user_id = user
             @comment.appunto_id = id
             @comment.save!
@@ -42,6 +43,7 @@ class CommentsController < ApplicationController
 		id = params[:id]
 		if Comment.exists?(id: id)
             @commento = Comment.find(id)
+            authorize! :update, @comment, :message => "Non puoi modificare commenti!"
 			@commento.update_attributes!(params[:comment].permit(:body, :rating))
 			redirect_to appunti_path(Appunto.find(params[:appunti_id]))
 		else
@@ -56,7 +58,7 @@ class CommentsController < ApplicationController
 
         if Comment.exists?(id)
             @commento = Comment.find(id)
-
+            authorize! :delete, @comment, :message => "Non puoi rimuovere commenti!"
             if @commento.user_id == current_user.id
                 @commento.destroy
                 flash[:notice] = "Commento correttamente rimosso"

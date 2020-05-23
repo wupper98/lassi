@@ -59,7 +59,8 @@ class AppuntiController < ApplicationController
 	
 	# POST
 	def create
-		Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating, :user_id, :comm_counter))
+		@ appunto = Appunto.create(params[:appunto].permit(:contenuto, :release_date, :rating, :user_id, :comm_counter))
+		authorize! :create, @appunto, :message => "Non puoi creare gli appunti"
 		redirect_to action: 'index'
 	end
 	
@@ -70,6 +71,7 @@ class AppuntiController < ApplicationController
 
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
+			authorize! :update, @appunto, :message => "Non puoi modificare gli appunti"
 			if @appunto.user_id == user
 				@appunto.update_attributes!(params[:appunto].permit(:contenuto, :release_date))
 				flash[:notice] = "Appunto correttamente modificato"
@@ -88,7 +90,7 @@ class AppuntiController < ApplicationController
 
 		if Appunto.exists?(id: id)
 			appunto = Appunto.find(id)
-
+			authorize! :delete, @appunto, :message => "Non puoi eliminare gli appunti"
 			if appunto.user_id == user
 				appunto.destroy
 				flash[:notice] = "Appunto correttamente rimosso"
