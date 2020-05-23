@@ -38,6 +38,8 @@ class AppuntiController < ApplicationController
 			@comments = @appunto.comments
 
 			@user = User.find(@appunto.user_id).email
+			
+			@currentUser = current_user
 
 			rating = 0
 			counter = 0

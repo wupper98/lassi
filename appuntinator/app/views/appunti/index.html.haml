@@ -6,11 +6,6 @@
 
 %h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
-- if user_signed_in?
-    = link_to("Log out", destroy_user_session_path(@user), method: :delete)
-- else 
-    = link_to("Log in", new_user_session_path)
-
 %table#appunti
     %thead
         %tr
@@ -27,4 +22,12 @@
             %td= app.release_date.strftime("%d/%m/%Y")
             %td= link_to "Leggi di più", appunti_path(app)
 
-%a{href: new_appunti_path} Aggiungi un appunto
+- if user_signed_in?
+    %p
+        = link_to("Crea un appunto", new_appunti_path)
+        |
+        = link_to("Log out", destroy_user_session_path(@user), method: :delete)
+- else 
+    %p
+        Per usare funzioni più avanzate devi eseguire il
+        = link_to "login.", new_user_session_path
