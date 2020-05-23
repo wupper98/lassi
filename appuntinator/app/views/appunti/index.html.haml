@@ -18,7 +18,7 @@
             %th # commenti
             %th Data di Pubblicazione
     %tbody
-    - @appunti.each do |app|
+    - @appunti.order(rating: :desc).each do |app|
         %tr
             %td= app.contenuto
             %td= app.rating
