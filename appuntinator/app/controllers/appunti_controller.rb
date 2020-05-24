@@ -21,7 +21,7 @@ class AppuntiController < ApplicationController
 		id = params[:id]
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
-			if @appunto.user_id != current_user.id
+			if @appunto.user_id != current_user.id && current_user.is_admin == false
 				flash[:notice] = "Non è il tuo appunto"
 				redirect_to appunti_path(@appunto)
 			end
@@ -70,7 +70,7 @@ class AppuntiController < ApplicationController
 
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
-			if @appunto.user_id == user
+			if @appunto.user_id == user || current_user.is_admin
 				@appunto.update_attributes!(params[:appunto].permit(:contenuto))
 				flash[:notice] = "Appunto correttamente modificato"
 				redirect_to appunti_path(@appunto)
@@ -88,7 +88,7 @@ class AppuntiController < ApplicationController
 
 		if Appunto.exists?(id: id)
 			appunto = Appunto.find(id)
-			if appunto.user_id == user
+			if appunto.user_id == user || current_user.is_admin
 				appunto.destroy
 				flash[:notice] = "Appunto correttamente rimosso"
 			else
