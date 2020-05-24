@@ -8,7 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       is_navigational_format?
     else
       session["devise.google_oauth2_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_url, :username => ""
     end
   end
 

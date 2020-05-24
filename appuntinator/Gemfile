@@ -65,5 +65,6 @@ end
 # Gems for authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'activerecord-session_store'
 
 gem 'haml'
