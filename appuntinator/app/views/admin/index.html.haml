@@ -1,0 +1,20 @@
+- flash.each do |type,msg|
+	%p#notice= msg
+
+%h1 Pannello di controllo
+
+%h3 Ecco la lista degli utenti del sito
+
+%table#appunti
+	%thead
+		%tr
+			%th User id
+			%th Username
+			%th email
+	%tbody
+	- @utenti.each do |u|
+		%tr
+			%td= u.id
+			%td= u.username
+			%td= u.email
+			%td= link_to "edit", edit_admin_path(u.id)

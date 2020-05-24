@@ -31,6 +31,8 @@
         = link_to("Crea un appunto", new_appunti_path)
         |
         = link_to("Log out", destroy_user_session_path(@user), method: :delete)
+        -if current_user.is_admin
+            = link_to("Control panel", admin_index_path)
 - else 
     %p
         Per usare funzioni più avanzate devi eseguire il
