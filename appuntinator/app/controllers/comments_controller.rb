@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
             @appunto = Appunto.find(appunto_id)
             @commento = Comment.find(comment_id)
 
-            if @commento.user_id != current_user.id
+            if @commento.user_id != current_user.id || current_user.is_admin != true
                 flash[:notice] = "Non è il tuo commento"
                 redirect_to appunti_path(appunto_id)
             end
@@ -59,7 +59,7 @@ class CommentsController < ApplicationController
 
         if Comment.exists?(id)
             @commento = Comment.find(id)
-            if @commento.user_id == current_user.id
+            if @commento.user_id == current_user.id || current_user.is_admin
                 @commento.destroy
                 flash[:notice] = "Commento correttamente rimosso"
             else
