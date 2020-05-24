@@ -8,9 +8,6 @@
 = form_tag appunti_path, :method => :put do
 
 	= label :appunto, :contenuto, 'Testo'
-	= text_field :appunto, :contenuto, value: @appunto.contenuto
-	
-	= label :appunto, :release_date, 'Data di Pubblicazione'
-	= date_select :appunto, :release_date
+	= text_area :appunto, :contenuto, value: @appunto.contenuto
 	
 	= submit_tag 'Salva'

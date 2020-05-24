@@ -53,6 +53,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Added test gems
 group :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
@@ -63,7 +65,5 @@ end
 # Gems for authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
-gem 'rspec'
-gem 'canard', '~> 0.5.0.pre'
 
 gem 'haml'
