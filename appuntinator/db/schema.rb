@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20200519182002) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "username", default: "", null: false
+    t.string "username", null: false
     t.boolean "is_admin", default: false, null: false
     t.string "studyPlace", default: ""
     t.text "biografia", default: ""
