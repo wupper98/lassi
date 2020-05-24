@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
                 @comment.user_id = user
                 @comment.appunto_id = id
                 @comment.save!
-                flash[:notice] = "Commento aggiornato!"
+                flash[:notice] = "Commento aggiunto!"
                 @appunto.update_attribute :comm_counter, @appunto.comm_counter+1
             else
                 flash[:notice] = "Non puoi commentare un tuo appunto"
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
             @appunto = Appunto.find(appunto_id)
             @commento = Comment.find(comment_id)
 
-            if @commento.user_id != current_user.id || current_user.is_admin != true
+            if @commento.user_id != current_user.id 
                 flash[:notice] = "Non è il tuo commento"
                 redirect_to appunti_path(appunto_id)
             end
