@@ -3,11 +3,6 @@ class AppuntiController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:show, :index]
 
 	# GET
-	def index_d
-		@appunti = Appunto.all.order('appuntos.rating DESC')
-		@user = current_user
-	end
-
 	def index
 		@appunti = Appunto.all
 		@user = current_user
@@ -60,6 +55,7 @@ class AppuntiController < ApplicationController
 	# POST
 	def create
 		@appunto = Appunto.create(params[:appunto].permit(:contenuto, :release_date, :user_id))
+
 		redirect_to action: 'index'
 	end
 	

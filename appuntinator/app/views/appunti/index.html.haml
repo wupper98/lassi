@@ -3,6 +3,9 @@
 
 %h1 Benvenuto su Appuntinator
 
+- if user_signed_in?
+    User: #{@user.email}
+
 
 %h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
@@ -18,7 +21,7 @@
             %th # commenti
             %th Data di Pubblicazione
     %tbody
-    - @appunti.each do |app|
+    - @appunti.order(rating: :desc).each do |app|
         %tr
             %td= app.contenuto
             %td= app.rating
@@ -31,9 +34,16 @@
         = link_to("Crea un appunto", new_appunti_path)
         |
         = link_to("Log out", destroy_user_session_path(@user), method: :delete)
+        
         -if current_user.is_admin
             = link_to("Control panel", admin_index_path)
+
 - else 
     %p
         Per usare funzioni più avanzate devi eseguire il
         = link_to "login.", new_user_session_path
+    
+- if user_signed_in?
+    %p Contatta gli sviluppatori di Appuntinator: 
+    = mail_to( "gianlucadecarlo98@gmail.com")
+    = mail_to( "aandreani@gmail.com")

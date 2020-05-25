@@ -12,6 +12,7 @@
 	
 	= hidden_field(:appunto, :release_date, :value => Time.now.strftime("%d/%m/%Y") )
 
+
 	= hidden_field(:appunto, :user_id, :value => @user)
-	
+
 	= submit_tag 'Salva'
