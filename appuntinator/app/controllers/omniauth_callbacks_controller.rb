@@ -13,6 +13,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    redirect_to root_path
+    redirect_to appunti_index_path
   end
 end

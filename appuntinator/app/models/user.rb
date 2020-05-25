@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :delete_all
   has_many :appuntos, dependent: :delete_all
+  has_one :user_profile, dependent: :delete
 
   validates :username,
     presence: true,
@@ -28,5 +29,4 @@ class User < ApplicationRecord
       end
     end
   end
-
 end

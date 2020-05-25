@@ -6,6 +6,10 @@ class AppuntiController < ApplicationController
 	def index
 		@appunti = Appunto.all
 		@user = current_user
+
+		if user_signed_in? && UserProfile.where("user_id like ?", @user.id ).empty?
+			UserProfile.create(:user_id => @user.id)
+		end
 	end
 	
 	def new
@@ -32,7 +36,7 @@ class AppuntiController < ApplicationController
 			@appunto = Appunto.find(id)
 			@comments = @appunto.comments
 
-			@user = User.find(@appunto.user_id).email
+			@user = User.find(@appunto.user_id)
 			
 			@currentUser = current_user
 

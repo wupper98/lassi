@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   }
   resources :admin
 
+  resources :user_profile
+
   resources :appunti do
     resources :comments
   end

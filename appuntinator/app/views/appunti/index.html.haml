@@ -1,17 +1,17 @@
 - flash.each do |type,msg|
     %p#notice= msg
 
-%h1 Benvenuto su Appuntinator
-
-- if user_signed_in?
-    Accesso eseguito come #{@user.username}
-
-
-%h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
-
 - if user_signed_in?
     %p
         = link_to("Modifica il tuo profilo", edit_user_registration_path(@user))
+        |
+        = link_to("I tuoi appunti", user_profile_index_path())
+        |
+        Accesso eseguito come #{@user.username}
+
+%h1 Benvenuto su Appuntinator
+
+%h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
 %table#appunti
     %thead
@@ -46,6 +46,9 @@
         = link_to "login.", new_user_session_path
     
 - if user_signed_in?
-    %p Contatta gli sviluppatori di Appuntinator: 
-    = mail_to( "gianlucadecarlo98@gmail.com")
-    = mail_to( "aandreani@gmail.com")
+    %p
+        Contatta gli sviluppatori di Appuntinator:
+    %p
+        = mail_to( "gianlucadecarlo98@gmail.com")
+        |
+        = mail_to( "aandreani1998@gmail.com")

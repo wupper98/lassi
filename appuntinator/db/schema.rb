@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200524110450) do
+ActiveRecord::Schema.define(version: 20200525182723) do
 
   create_table "appuntos", force: :cascade do |t|
     t.string "rating", default: "0"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20200524110450) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,6 +66,7 @@ ActiveRecord::Schema.define(version: 20200524110450) do
     t.boolean "is_admin", default: false, null: false
     t.string "studyPlace", default: ""
     t.text "biografia", default: ""
+    t.integer "trust_level", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
