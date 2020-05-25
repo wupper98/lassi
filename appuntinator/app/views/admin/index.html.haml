@@ -3,6 +3,8 @@
 
 %h1 Pannello di controllo
 
+#{link_to 'Home', appunti_index_path}
+
 %h3 Ecco la lista degli utenti del sito
 
 %table#appunti
@@ -17,4 +19,4 @@
 			%td= u.id
 			%td= u.username
 			%td= u.email
-			%td= link_to "edit", edit_admin_path(u.id)
+			%td= link_to "Banna", edit_admin_path(u.id)

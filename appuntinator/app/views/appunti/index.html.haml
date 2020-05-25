@@ -36,6 +36,8 @@
         = link_to("Log out", destroy_user_session_path(@user), method: :delete)
         
         -if current_user.is_admin
+            %br
+            > 
             = link_to("Control panel", admin_index_path)
 
 - else 
