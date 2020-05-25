@@ -26,7 +26,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :uid
 
       # Attributi dell'utente
-      t.string  "username", null: false
+      t.string  "username", deafult: "", null: false
       t.boolean "is_admin", default: false, null: false
       t.string  "studyPlace", default: ""
       t.text    "biografia", default: ""

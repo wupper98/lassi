@@ -211,7 +211,6 @@ GEM
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
       rspec-mocks (~> 3.9.0)
-
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -302,6 +301,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   puma (~> 3.7)
   rails (~> 5.1.5)
+  rspec
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
