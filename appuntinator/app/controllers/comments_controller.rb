@@ -60,6 +60,8 @@ class CommentsController < ApplicationController
         if Comment.exists?(id)
             @commento = Comment.find(id)
             if @commento.user_id == current_user.id || current_user.is_admin
+                @appunto = Appunto.find(@commento.appunto_id)
+                @appunto.update_attributes(:comm_counter => @appunto.comm_counter - 1)
                 @commento.destroy
                 flash[:notice] = "Commento correttamente rimosso"
             else

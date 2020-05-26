@@ -50,6 +50,8 @@ class AppuntiController < ApplicationController
 			if counter > 0
 				rating_medio = rating.to_f / counter.to_f
 				@appunto.update_attribute :rating, (rating_medio).to_s
+			else
+				@appunto.update_attribute :rating, "0"
 			end
 		else
 			redirect_to appunti_index_path

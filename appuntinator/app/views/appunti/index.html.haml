@@ -8,6 +8,8 @@
         = link_to("I tuoi appunti", user_profile_index_path())
         |
         Accesso eseguito come #{@user.username}
+        |
+        = link_to("Log out", destroy_user_session_path(@user), method: :delete)
 
 %h1 Benvenuto su Appuntinator
 
@@ -29,21 +31,19 @@
             %td= app.release_date.strftime("%d/%m/%Y")
             %td= link_to "Leggi di più", appunti_path(app)
 
-%p Categorie
-= link_to "#Arte", search_category_path("Arte") 
-= link_to "#Letteratura", search_category_path("Letteratura")
-= link_to "#Scienza", search_category_path("Scienza")
-= link_to "#Tecnologia", search_category_path("Tecnologia")
-
 - if user_signed_in?
     %p
         = link_to("Crea un appunto", new_appunti_path)
-        |
-        = link_to("Log out", destroy_user_session_path(@user), method: :delete)
-        
-        -if current_user.is_admin
-            %br
-            > 
+%div 
+    %p Categorie
+    = link_to "#Arte", search_category_path("Arte") 
+    = link_to "#Letteratura", search_category_path("Letteratura")
+    = link_to "#Scienza", search_category_path("Scienza")
+    = link_to "#Tecnologia", search_category_path("Tecnologia")
+
+- if user_signed_in?
+    -if current_user.is_admin
+        %p
             = link_to("Control panel", admin_index_path)
 
 - else 
@@ -52,9 +52,10 @@
         = link_to "login.", new_user_session_path
     
 - if user_signed_in?
-    %p
-        Contatta gli sviluppatori di Appuntinator:
-    %p
-        = mail_to( "gianlucadecarlo98@gmail.com")
-        |
-        = mail_to( "aandreani1998@gmail.com")
+    %div
+        %p
+            Contatta gli sviluppatori di Appuntinator:
+        %p
+            = mail_to( "gianlucadecarlo98@gmail.com")
+            |
+            = mail_to( "aandreani1998@gmail.com")
