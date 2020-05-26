@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200525182723) do
+ActiveRecord::Schema.define(version: 20200526173222) do
 
   create_table "appuntos", force: :cascade do |t|
     t.string "rating", default: "0"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20200525182723) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category", default: ""
     t.index ["user_id"], name: "index_appuntos_on_user_id"
   end
 
@@ -30,6 +31,11 @@ ActiveRecord::Schema.define(version: 20200525182723) do
     t.integer "appunto_id"
     t.index ["appunto_id"], name: "index_comments_on_appunto_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "search_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :user_profile
 
+  resources :search_category
+
   resources :appunti do
     resources :comments
   end
