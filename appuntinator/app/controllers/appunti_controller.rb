@@ -71,7 +71,7 @@ class AppuntiController < ApplicationController
 		if Appunto.exists?(id: id)
 			@appunto = Appunto.find(id)
 			if @appunto.user_id == user || current_user.is_admin
-				@appunto.update_attributes!(params[:appunto].permit(:contenuto))
+				@appunto.update_attributes!(params[:appunto].permit(:contenuto, :category))
 				flash[:notice] = "Appunto correttamente modificato"
 				redirect_to appunti_path(@appunto)
 			end
