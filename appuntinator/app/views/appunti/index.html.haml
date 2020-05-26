@@ -29,6 +29,12 @@
             %td= app.release_date.strftime("%d/%m/%Y")
             %td= link_to "Leggi di più", appunti_path(app)
 
+%p Categorie
+= link_to "#Arte", search_category_path("Arte") 
+= link_to "#Letteratura", search_category_path("Letteratura")
+= link_to "#Scienza", search_category_path("Scienza")
+= link_to "#Tecnologia", search_category_path("Tecnologia")
+
 - if user_signed_in?
     %p
         = link_to("Crea un appunto", new_appunti_path)

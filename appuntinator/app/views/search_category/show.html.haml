@@ -1,0 +1,19 @@
+%h1 Tutti gli appunti su: #{@category}
+
+#{link_to 'Home', appunti_index_path}
+
+%table#appunti
+    %thead
+        %tr
+            %th Contenuto
+            %th rating
+            %th # commenti
+            %th Data di Pubblicazione
+    %tbody
+    - @appunti.order(rating: :desc).each do |app|
+        %tr
+            %td= app.contenuto
+            %td= app.rating
+            %td= app.comm_counter
+            %td= app.release_date.strftime("%d/%m/%Y")
+            %td= link_to "Leggi di più", appunti_path(app)
