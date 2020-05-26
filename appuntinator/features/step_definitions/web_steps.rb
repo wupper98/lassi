@@ -252,3 +252,31 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Given("I'm logged in as a user") do
+  @user = create(:user)
+  @user.save
+  visit new_user_session_path
+  fill_in "Email", with: @user.email
+  fill_in "Password", with: @user.password
+  click_button "Log in"
+end
+
+Given("I'm logged in as admin") do
+  @user = create(:user)
+  @user.save
+  @admin = create(:admin)
+  @admin.save
+  visit new_user_session_path
+  fill_in "Email", with: @admin.email
+  fill_in "Password", with: @admin.password
+  click_button "Log in"
+end
+
+When /I visit the profile form/ do
+  click_on "Modifica il tuo profilo"
+end
+
+When /I visit the control panel/ do
+  click_on "Control panel"
+end
