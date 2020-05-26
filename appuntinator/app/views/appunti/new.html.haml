@@ -9,9 +9,11 @@
 
 	= label :appunto, :contenuto, 'Testo'
 	= text_area :appunto, :contenuto
+
+	= label :appunto, :category, 'Categoria'
+	= select :appunto, :category, ["Arte", "Letteratura", "Scienza", "Tecnologia"]
 	
 	= hidden_field(:appunto, :release_date, :value => Time.now.strftime("%d/%m/%Y") )
-
 
 	= hidden_field(:appunto, :user_id, :value => @user)
 

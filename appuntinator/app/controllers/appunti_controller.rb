@@ -58,7 +58,7 @@ class AppuntiController < ApplicationController
 	
 	# POST
 	def create
-		@appunto = Appunto.create(params[:appunto].permit(:contenuto, :release_date, :user_id))
+		@appunto = Appunto.create(params[:appunto].permit(:contenuto, :release_date, :user_id, :category))
 
 		redirect_to action: 'index'
 	end

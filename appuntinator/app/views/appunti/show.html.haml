@@ -10,10 +10,12 @@
 		%tr
 			%th Testo
 			%th Rating
+			%th Categoria
 			%th Author
 	%tbody
 		%td= @appunto.contenuto
 		%td= @appunto.rating
+		%td= @appunto.category
 		%td= link_to(@user.username, user_profile_path(@user.id))
  
 -if user_signed_in?

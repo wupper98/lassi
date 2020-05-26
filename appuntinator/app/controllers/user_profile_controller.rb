@@ -20,10 +20,12 @@ class UserProfileController < ApplicationController
         @user = User.find(params[:id])
         @appunti = Appunto.where(user_id: @user.id)
         @appunti.each do |app|
-            if app.rating.to_f >= 3
-                @user.trust_level += 1
-            else
-                @user.trust_level -= 1
+            if app.comm_counter > 0
+                if app.rating.to_f >= 3
+                    @user.trust_level += 1
+                else
+                    @user.trust_level -= 1
+                end
             end
         end
     end
