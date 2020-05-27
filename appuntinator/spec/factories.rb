@@ -21,16 +21,5 @@ FactoryBot.define do
         is_admin        {true}
         confirmed_at    {Time.now.utc}
     end
-
-    factory :app, class: Appunto do
-        contenuto       {"Appunto di prova"}
-        # release_date    {Time.now.strftime("%d-%m-%Y")}
-        # user_id         {User.where(username: "cucumber").id}
-    end
-
-    factory :comm, class: Comment do
-        body            {"Commento di prova"}
-        # user_id         {User.where(username: "cucumber2").id}
-        # appunto_id      {Appunto.where(user_id: User.where(username: "cucumber")).id}
-    end
+    
 end
