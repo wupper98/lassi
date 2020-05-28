@@ -39,3 +39,8 @@ a {
   margin: 1em 0;
   padding: 4px;
 }
+
+#map {
+  width: 50%;
+  height: 300px;
+}
