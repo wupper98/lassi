@@ -12,5 +12,5 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= requrie leaflet
 //= require_tree .
-//= require leaflet-google.js
