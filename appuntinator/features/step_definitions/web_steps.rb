@@ -280,3 +280,11 @@ end
 When /I visit the control panel/ do
   click_on "Control panel"
 end
+
+Given("I'm on Appuntinator home page") do
+  
+end
+
+When /I visit Arte/ do
+  click_on "Modifica il tuo profilo"
+end
