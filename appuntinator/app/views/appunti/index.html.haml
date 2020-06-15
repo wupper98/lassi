@@ -1,3 +1,8 @@
+=stylesheet_link_tag "leaflet"
+%link{:crossorigin => "", :href => "https://unpkg.com/leaflet@1.6.0/dist/leaflet.css", :integrity => "sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==", :rel => "stylesheet"}
+%script{:crossorigin => "", :integrity => "sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==", :src => "https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"}
+%script{:crossorigin => "anonymous", :integrity => "sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=", :src => "https://code.jquery.com/jquery-3.4.1.min.js"}
+
 - flash.each do |type,msg|
     %p#notice= msg
 
@@ -15,6 +20,10 @@
 
 %h3 Ecco a te la lista di tutti gli appunti presenti nel nostro DataBase
 
+- if user_signed_in?
+    %p
+        = link_to("Crea un appunto", new_appunti_path)
+
 %table#appunti
     %thead
         %tr
@@ -31,9 +40,6 @@
             %td= app.release_date.strftime("%d/%m/%Y")
             %td= link_to "Leggi di più", appunti_path(app)
 
-- if user_signed_in?
-    %p
-        = link_to("Crea un appunto", new_appunti_path)
 %div 
     %p Categorie
     = link_to "#Arte", search_category_path("Arte") 
@@ -42,6 +48,15 @@
     = link_to "#Tecnologia", search_category_path("Tecnologia")
 
 - if user_signed_in?
+    -if current_user.studyPlace == ""
+        %p#notice Imposta il tuo luogo di studio per conoscere le cartolerie in zona
+    -else
+        %p#green Cartolerie vicine a #{current_user.studyPlace}
+        #userdata{ "data-user-studyplace" => "#{current_user.studyPlace}"}
+        #map
+            =javascript_include_tag "leaflet"
+            =javascript_include_tag "appunti"
+
     -if current_user.is_admin
         %p
             = link_to("Control panel", admin_index_path)

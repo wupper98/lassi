@@ -16,7 +16,9 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token(length = 20)
+      # user.password = Devise.friendly_token(length = 20)
+      # password di defaoult per utenti con oauth
+      user.password = "123456789"
       user.username = "Google" + User.maximum(:id).to_i.to_s
     end
   end
