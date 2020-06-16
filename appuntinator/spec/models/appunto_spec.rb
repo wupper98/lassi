@@ -24,7 +24,7 @@ RSpec.describe Appunto, type: :model do
 
   it "is not valid without a category" do
     @user = FactoryBot.create(:user)
-    session = Appunto.new(:user_id => @user.id, :contenuto => nil, :category => nil)
+    session = Appunto.new(:user_id => @user.id, :contenuto => "Content", :category => nil)
     expect(session).to_not be_valid
     @user.destroy
   end

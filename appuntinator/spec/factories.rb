@@ -21,5 +21,19 @@ FactoryBot.define do
         is_admin        {true}
         confirmed_at    {Time.now.utc}
     end
+
+    factory :arteNote, class: Appunto do
+        release_date    {Time.now.utc}
+        contenuto       {"Sono un appunto di Arte"}
+        category        {"Arte"}
+        user_id         {1}
+    end
+
+    factory :techNote, class: Appunto do
+        release_date    {Time.now.utc}
+        contenuto       {"Sono un appunto di Tecnologia"}
+        category        {"Tecnologia"}
+        user_id         {1}
+    end
     
 end

@@ -5,6 +5,9 @@ Feature: I want to filter the notes by category
 
     Scenario: Category filter
         Given I'm logged in as a user
-        Given I'm on Appuntinator home page
-        When I visit Arte
-        Then I should only see the notes wich belongs to Arte
+        Given I am on the home page
+        Given that there is one article of Arte
+        Given that there is one article of Tecnologia
+        When I follow "#Arte"
+        Then I should see "Sono un appunto di Arte"
+        And I should not see "Sono un appunto di Tecnologia"

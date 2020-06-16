@@ -273,18 +273,20 @@ Given("I'm logged in as admin") do
   click_button "Log in"
 end
 
+Given("that there is one article of Arte") do
+  @arte = create(:arteNote)
+  @arte.save
+end
+
+Given("that there is one article of Tecnologia") do
+  @tech = create(:techNote)
+  @tech.save
+end
+
 When /I visit the profile form/ do
   click_on "Modifica il tuo profilo"
 end
 
 When /I visit the control panel/ do
   click_on "Control panel"
-end
-
-Given("I'm on Appuntinator home page") do
-  
-end
-
-When /I visit Arte/ do
-  click_on "Modifica il tuo profilo"
 end
