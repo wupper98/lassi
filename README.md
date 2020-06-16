@@ -25,6 +25,11 @@ Il controllo degli accessi è basato su un sistema RBA, che prevede tre ruoli di
 
 ### Test
 
-Sono stati svolti i seguenti test:
+I test sono stati implementati verticalmente svolgendo i test di implementazione con RSpec e di integrazione con Cucumber.
 
-- 
+Le user stories rappresentative che sono state scelte per essere testate sono:
+
+- La possibilità per l'amministratore di eliminare un utente
+- La possibilità per un utente di filtrare gli appunti per categoria
+
+Sono stati aggiunti anche piccoli test riguardanti l'implementazione dell'aggiunta di appunti e commenti, con RSpec. Con Cucumber sono stati implementati ulteriori test di integrazione relativi alla modifica di attributi dell'utente (saltati quelli di implementazione poiché gestiti dalla gemma 'Devise'). 
